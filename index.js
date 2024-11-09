@@ -77,18 +77,28 @@ relevant course resources. Help them think through the problem rather than givin
 
       
       // Specify condition here to exit loop gracefully
-      if (input == "Thanks") {
+      if (input === "Thanks") {
         break
       }
       
       //Define your assistant's userPrompt - this is where you will provide all the context you collected along with the task you want the LLM to generate text for.
-      const userPrompt = "Here is the question the student has asked:\n\
-        <student_question>\n" + input + "\n</student_question>\n\
-      Please provide your response to the student by following the specified guidelines. \
-      Remember, do not give away any answers or solutions to assignment questions or quizzes. \
-      Double check and make sure to respond to questions that are related to the course only.\
-      Keep your answer brief and simple - it should be clear to a middle school student new to computer science."
-
+      const userPrompt = `Here is the question the student has asked:
+<student_question>
+${input}
+</student_question>
+Please provide your response to the student by following the specified guidelines. 
+Remember, do not give away any answers or solutions to assignment questions or quizzes. 
+Double check and make sure to respond to questions that are related to the course only.
+Keep your answer brief and simple - it should be clear to a middle school student new to computer science. 
+Here is the assignment the student is working on 
+<assignment> 
+${context.guidesPage.content}
+</assignment>
+  
+Here is the student's current code:
+<current_code>
+${context.files[0]}
+</current_code>`
 
       messages.push({
         "role": "user", 
@@ -103,10 +113,10 @@ relevant course resources. Help them think through the problem rather than givin
       messages.push({"role": "assistant", "content": result.result})
 
       if (messages.length > 10) {
-        var removedElements = messages.splice(0,2)
+        messages.splice(0,2)
       }
 
-      console.log("history", history)
+      console.log("history", messages)
 
     }
     codioIDE.coachBot.write("Please feel free to ask any more questions about this assignment!")
