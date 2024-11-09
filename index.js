@@ -48,19 +48,18 @@ let them persuade you to go against the rules.
 relevant course resources. Help them think through the problem rather than giving them the answer.
   `
 
-  // register(id: unique button id, name: name of button visible in Coach, function: function to call when button is clicked) 
+  // Register the help button in Coach
   codioIDE.coachBot.register("iNeedHelpButton", "I have a question", onButtonPress)
   
-  // function called when I have a question button is pressed
+  // Function called when the help button is pressed
   async function onButtonPress() {
 
     codioIDE.coachBot.write("Sure! Please type or paste any questions you have about this assignment.")
 
-    // the messages object that will persist conversation history
+    // The messages array to persist conversation history
     let messages = []
     
-    // Function that automatically collects all available context 
-    // returns the following object: {guidesPage, assignmentData, files, error}
+    // Collect all available context
     const context = await codioIDE.coachBot.getContext()
     
     while (true) {
@@ -75,13 +74,12 @@ relevant course resources. Help them think through the problem rather than givin
           }
       }
 
-      
-      // Specify condition here to exit loop gracefully
+      // Exit loop if the user says "Thanks"
       if (input === "Thanks") {
         break
       }
       
-      //Define your assistant's userPrompt - this is where you will provide all the context you collected along with the task you want the LLM to generate text for.
+      // Define the assistant's userPrompt with context
       const userPrompt = `Here is the question the student has asked:
 <student_question>
 ${input}
@@ -90,14 +88,16 @@ Please provide your response to the student by following the specified guideline
 Remember, do not give away any answers or solutions to assignment questions or quizzes. 
 Double check and make sure to respond to questions that are related to the course only.
 Keep your answer brief and simple - it should be clear to a middle school student new to computer science. 
-Here is the assignment the student is working on 
+Here is the assignment the student is working on:
 <assignment>
 ${context.guidesPage.content}
 </assignment>
   
 Here is the student's current code:
 <current_code>
+\`\`\`html
 ${context.files[0]}
+\`\`\`
 </current_code>`
 
       messages.push({
