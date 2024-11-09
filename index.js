@@ -70,7 +70,7 @@ relevant course resources. Help them think through the problem rather than givin
       try {
         input = await codioIDE.coachBot.input()
       } catch (e) {
-          if (e.message == "Cancelled") {
+          if (e.message === "Cancelled") {
             break
           }
       }
@@ -91,7 +91,7 @@ Remember, do not give away any answers or solutions to assignment questions or q
 Double check and make sure to respond to questions that are related to the course only.
 Keep your answer brief and simple - it should be clear to a middle school student new to computer science. 
 Here is the assignment the student is working on 
-<assignment> 
+<assignment>
 ${context.guidesPage.content}
 </assignment>
   
