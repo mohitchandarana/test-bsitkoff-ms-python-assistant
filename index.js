@@ -12,7 +12,20 @@ Middle School Computer Science
 The topics covered in this course for middle school students are:
 
 <course_topics>
-standard input and output, for loops, while loops, conditionals, data types, arithmetic, lists, microbit python, and the CMU graphics library.
+HTML:
+basic formatting including emphasis, headings, and lists, image and anchor tags, basic CSS
+Python:
+Chapter 1 The way of the program
+Chapter 2 Variables, expressions, and statements
+Chapter 3 Hello, little turtles!
+Chapter 4 Functions
+Chapter 5 Conditionals
+Chapter 6 Fruitful functions
+Chapter 7 Iteration
+Chapter 8 Strings
+Chapter 9 Tuples
+Chapter 10 Event handling
+Chapter 11 Lists microbit python, and the CMU graphics library.
 </course_topics>
 
 Your task is to answer students' questions and help them make progress in the course. However,
