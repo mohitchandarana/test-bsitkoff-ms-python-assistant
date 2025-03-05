@@ -19,11 +19,15 @@
       // Fetch updated context each time to capture any changes
       const context = await codioIDE.coachBot.getContext();
 
+      console.log("context", context)
+      
       const userPrompt = `Here is the question the student has asked with context:\n<student_question>\n${input}\n</student_question>\n\nContext:\n${JSON.stringify(context)}\n Please provide your response to the student by following the specified guidelines. \
       Remember, do not give away any answers or solutions to assignment questions or quizzes. \
       Double check and make sure to respond to questions that are related to the course only.\
       For simple questions, keep your answer brief and short."`;
 
+      console.log("user prompt", userPrompt)
+      
       messages.push({
         "role": "user",
         "content": userPrompt
